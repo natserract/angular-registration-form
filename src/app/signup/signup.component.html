@@ -133,11 +133,11 @@
                         </ng-container>
                     </div>
 
-                    <button class="btn btn-cancel" type="reset">
+                    <button class="btn btn-cancel btn-primary" type="reset">
                         Cancel
                     </button>
 
-                    <button [disabled]="forms.invalid" class="btn btn-primary" type="submit">
+                    <button style="margin-left: 20px" [disabled]="forms.invalid" class="btn btn-primary" type="submit">
                         {{ isSubmitted ? 'Please wait...': 'Daftar Sekarang' }}
                     </button>
                 </div>

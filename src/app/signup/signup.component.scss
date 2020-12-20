@@ -65,6 +65,12 @@ label {
         color: rgba(56, 47, 47, 0.9);
     }
 }
+button {
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
 
 .btn-primary {
     background-color: #3452d8; /* Green */
@@ -75,6 +81,7 @@ label {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    cursor: pointer;
 
     &:not(:disabled) {
         &:hover,
@@ -83,3 +90,4 @@ label {
         }
     }
 }
+
