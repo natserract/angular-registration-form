@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "lapomps"
+    }
+  },
+  "defaultProject": "lapomps",
+  "cli": {
+    "analytics": false
+  }
 }

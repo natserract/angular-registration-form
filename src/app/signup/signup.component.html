@@ -1,0 +1,147 @@
+<main class="signup-page">
+    <div class="signup-page_section">
+        <h2 style="margin-bottom: 50px;">Lapomps Test</h2>
+        <form (ngSubmit)="handleSubmit()" [formGroup]="forms" class="signup-form">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="signUpEmail">Email</label>
+                        <input class="form-control" formControlName="signUpEmail" id="signUpEmail" maxlength="200"
+                            name="signUpEmail" placeholder="Email kamu" required type="text" email="true">
+                        <div *ngIf="
+                            forms.get('signUpEmail').errors !== null ?
+                            forms.get('signUpEmail').errors.required && forms.get('signUpEmail').touched : null"
+                            class="valid-feedback">
+                            Field ini wajib diisi.
+                        </div>
+
+                        <div *ngIf="forms.get('signUpEmail').errors !== null ? forms.get('signUpEmail').touched && forms.get('signUpEmail').errors.email : null"
+                            class="valid-feedback">
+                            Harap periksa alamat email.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signUpFirstName">First Name</label>
+                        <input class="form-control" formControlName="signUpFirstName" id="signUpFirstName"
+                            maxlength="200" name="signUpFirstName" placeholder="First name kamu" required type="text">
+                        <div *ngIf="
+                            forms.get('signUpFirstName').errors !== null ?
+                            forms.get('signUpFirstName').errors.required && forms.get('signUpFirstName').touched : null"
+                            class="valid-feedback">
+                            Field ini wajib diisi.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signUpLastName">Last Name</label>
+                        <input class="form-control" formControlName="signUpLastName" id="signUpLastName" maxlength="200"
+                            name="signUpLastName" placeholder="Last name kamu" required type="text">
+                        <div *ngIf="
+                            forms.get('signUpLastName').errors !== null ?
+                            forms.get('signUpLastName').errors.required && forms.get('signUpLastName').touched : null"
+                            class="valid-feedback">
+                            Field ini wajib diisi.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signUpNewPassword">Buat kata sandi</label>
+                        <div class="input-wvisibility">
+                            <input autocomplete="false" class="form-control" formControlName="signUpNewPassword"
+                                id="signUpNewPassword" minlength="6" name="signUpNewPassword" placeholder="********"
+                                required [type]="isShowPassword ? 'text' : 'password'">
+                            <button (click)="showPassword()">{{ visibilityActive }}</button>
+                        </div>
+
+                        <div *ngIf="forms.get('signUpNewPassword').errors !== null ? forms.get('signUpNewPassword').touched && forms.get('signUpNewPassword').errors.required : null"
+                            class="valid-feedback">
+                            Field ini wajib diisi.
+                        </div>
+
+                        <div *ngIf="forms.get('signUpNewPassword').errors !== null ? forms.get('signUpNewPassword').errors.strong && forms.get('signUpNewPassword').touched : null"
+                            class="valid-feedback">
+                            Harap periksa kata sandi.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpConfirmNewPassword">Konfirmasi kata sandi</label>
+                        <div class="input-wvisibility">
+                            <input autocomplete="false" class="form-control" formControlName="signUpConfirmNewPassword"
+                                id="signUpConfirmNewPassword" minlength="6" name="signUpConfirmNewPassword"
+                                placeholder="********" required
+                                [type]="isShowPasswordVerification ? 'text' : 'password'">
+                            <button (click)="showPasswordVerification()">{{ visibilityActiveVerification }}</button>
+                        </div>
+
+                        <div *ngIf="forms.get('signUpConfirmNewPassword').errors !== null ? forms.get('signUpConfirmNewPassword').touched && forms.get('signUpConfirmNewPassword').errors : null"
+                            class="valid-feedback">
+                            Harap periksa kembali kata sandi.
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-checkbox">
+                        <label class="container">
+                            <input class="form-check-input" formControlName="signUpGender" id="signUpGenderMale"
+                                name="signUpGender" required type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <label class="form-check-label" for="male">
+                            Laki-laki
+                        </label>
+
+                        <label class="container">
+                            <input class="form-check-input" formControlName="signUpGender" id="signUpGenderFemale"
+                                name="signUpGender" required type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="form-check-label" for="female">
+                            Perempuan
+                        </label>
+
+                        <div *ngIf="forms.get('signUpGender').errors !== null ?
+                                          forms.get('signUpGender').errors.required && forms.get('signUpGender').touched : null"
+                            class="valid-feedback">
+                            Field ini wajib diisi.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signUpBirthDay">Birth Day</label>
+                        <input class="form-control" formControlName="signUpBirthDay" id="signUpBirthDay" type="date"
+                            name="signUpBirthDay" placeholder="First name kamu" required>
+                        <div *ngIf="
+                            forms.get('signUpBirthDay').errors !== null ?
+                            forms.get('signUpBirthDay').errors.required && forms.get('signUpBirthDay').touched : null"
+                            class="valid-feedback">
+                            Field ini wajib diisi.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signUpPhoneNumber">Nomor Handphone</label>
+                        <input (keyup)="changeInput($event)" [(ngModel)]="signUpPhoneNumberValue" class="form-control"
+                            formControlName="signUpPhoneNumber" id="signUpPhoneNumber" maxlength="13" minlength="11"
+                            name="signUpPhoneNumber" placeholder="0812xxxxx" type="text">
+
+                        <ng-container>
+                            <div *ngIf="forms.get('signUpPhoneNumber').errors !== null ? forms.get('signUpPhoneNumber').errors.minlength && forms.get('signUpPhoneNumber').touched : null"
+                                class="valid-feedback"> Harap periksa nomor handphone.
+                            </div>
+
+                        </ng-container>
+                    </div>
+
+                    <button class="btn btn-cancel" type="reset">
+                        Cancel
+                    </button>
+
+                    <button [disabled]="forms.invalid" class="btn btn-primary" type="submit">
+                        {{ isSubmitted ? 'Please wait...': 'Daftar Sekarang' }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
